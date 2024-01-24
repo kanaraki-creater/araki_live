@@ -19,6 +19,7 @@
             <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
         </h2>
         </div>
+        <a href='/posts/create'>投稿する</a>
         <div class="paginate">
             {{ $posts->links()}}
         </div>

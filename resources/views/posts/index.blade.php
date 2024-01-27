@@ -24,6 +24,7 @@
             @endforeach
         </div>
         <a href='/posts/create'>投稿する</a>
+        <p class='user_name'>{{ Auth::user()->name }}</p>
         <div class="paginate">
             {{ $posts->links()}}
         </div>

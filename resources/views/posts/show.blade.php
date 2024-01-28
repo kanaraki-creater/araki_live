@@ -20,6 +20,13 @@
         <div class="edit">
             <a href="/posts/{{ $post->id }}/edit">編集する</a>
         </div>
+        <div class="comment">
+            <h3>コメントタイトル</h3>
+            <p>コメント本文</p>
+            <div "comment_post">
+                <p>コメントする</p>
+            </div>
+        </div>
         <div class="footer">
             <a href="/">戻る</a>
         </div>

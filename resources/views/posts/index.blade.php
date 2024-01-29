@@ -20,6 +20,16 @@
                         @method('DELETE')
                         <button type="button" onclick="deletePost({{ $post->id }})">削除する</button>
                     </form>
+                    <div class='comments'>
+                        @foreach ($post->comments as $comment)
+                            <div class='comment'>
+                                <h3 class='title'>
+                                    <a href="/comments/{{ $comment->id }}">{{ $comment->title }}</a>
+                                </h3>
+                                <p class='body'>{{ $comment->body }}</p>
+                        @endforeach
+                            </div>
+                    </div>
                 </div>
             @endforeach
         </div>

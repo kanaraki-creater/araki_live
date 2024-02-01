@@ -25,7 +25,27 @@
             <p>コメント本文</p>
             <div "comment_post">
                 <p>コメントする</p>
+                <form action="/comments/{{ $post->id }}" method="POST">
+                    @csrf
+                    <div class="title">
+                        <h2>コメントタイトル</h2>
+                        <input type="text" name="comment[title]" placeholder="最高でした！" value="{{ old('comment.title') }}"/>
+                        <p class="title_error">{{ $errors->first('comment.title') }}</p>
+                    </div>
+                    <div class="body">
+                        <h2>コメント本文</h2>
+                        <textarea name="comment[body]" placeholder="歌もダンスも上手で感動しました。">{{ old('comment.body') }}</textarea>
+                        <p class="body_error">{{ $errors->first('comment.body') }}</p>
+                    </div>
+                    <input type="submit" value="投稿する"/>
+                </form>
             </div>
+        </div>
+        <div>
+            @foreach ($post->comments as $comment)
+            <p>{{ $comment->title }}</p>
+            <p>{{ $comment->body }}</p>
+            @endforeach
         </div>
         <div class="footer">
             <a href="/">戻る</a>

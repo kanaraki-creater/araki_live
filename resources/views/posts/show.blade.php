@@ -45,6 +45,9 @@
             @foreach ($post->comments as $comment)
             <p>{{ $comment->title }}</p>
             <p>{{ $comment->body }}</p>
+            <div class="edit">
+                <a href="/comments/{{ $comment->id }}/edit">編集する</a>
+            </div>
             @endforeach
         </div>
         <div class="footer">

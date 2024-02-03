@@ -38,6 +38,8 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
     Route::post('/comments/{post}', 'store');
     Route::get('/comments/create', 'create')->name('create');
+    Route::get('/comments/{comment}/edit', 'edit')->name('edit');
+    Route::put('/comments/{comment}', 'update')->name('update');
 });
 
 require __DIR__.'/auth.php';

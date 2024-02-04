@@ -48,8 +48,22 @@
             <div class="edit">
                 <a href="/comments/{{ $comment->id }}/edit">編集する</a>
             </div>
+            <form action="/comments/{{ $comment->id }}?postId={{ $post->id }}" id="form_{{ $post->id }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button  onclick="deleteComment({{ $comment->id }})">削除する</button> 
+            </form>
             @endforeach
         </div>
+        <script>
+            function deleteComment(id) {
+                'use strict'
+        
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById(`form_${id}`).submit();
+                }
+            }
+        </script>
         <div class="footer">
             <a href="/">戻る</a>
         </div>

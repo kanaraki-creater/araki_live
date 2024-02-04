@@ -40,6 +40,7 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::get('/comments/create', 'create')->name('create');
     Route::get('/comments/{comment}/edit', 'edit')->name('edit');
     Route::put('/comments/{comment}', 'update')->name('update');
+    Route::delete('/comments/{comment}', 'delete')->name('delete');
 });
 
 require __DIR__.'/auth.php';

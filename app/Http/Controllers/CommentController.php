@@ -39,6 +39,13 @@ class CommentController extends Controller
         $input = $request['comment'];
         $comment->fill($input)->save();
     
-        return redirect('/posts/' . $comment->id);
+        return redirect('/posts/' . $comment->post_id);
+    }
+    
+    public function delete(Request $request, Comment $comment)
+    {
+        $post = $request->input('postId');
+        $comment->delete();
+        return redirect('/posts/' . $post);
     }
 }

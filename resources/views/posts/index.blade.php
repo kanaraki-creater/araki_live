@@ -27,8 +27,8 @@
                                     <a href="/comments/{{ $comment->id }}">{{ $comment->title }}</a>
                                 </h3>
                                 <p class='body'>{{ $comment->body }}</p>
-                        @endforeach
                             </div>
+                        @endforeach
                     </div>
                 </div>
             @endforeach

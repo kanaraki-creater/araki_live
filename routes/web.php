@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,8 +45,9 @@ Route::controller(CommentController::class)->middleware(['auth'])->group(functio
     Route::delete('/comments/{comment}', 'delete')->name('delete');
 });
 
-Route::controller(LikeController::class)->middlware(['auth'])->group(function(){
-    Route::get('/like/{post}', 'store')->name('store');
+Route::controller(CommentController::class)->middleware(['auth'])->group(function(){
+    Route::get('/likes/{post}', [LikeController::class, 'like'])->name('like');
+    Route::get('/dislike/{post}', [LikeController::class, 'dislike'])->name('dislike');
 });
 
 require __DIR__.'/auth.php';

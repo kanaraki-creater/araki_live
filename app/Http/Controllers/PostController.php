@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Like;
 
 class PostController extends Controller
 {
@@ -16,7 +17,8 @@ class PostController extends Controller
     
     public function show(Post $post)
     {
-        return view('posts.show')->with(['post' => $post]);
+        $like = Like::where('post_id', $post->id)->where('user_id', auth()->user()->id)->first();
+        return view('posts.show')->with(['post' => $post, 'like' => $like]);
     }
     
     public function create()

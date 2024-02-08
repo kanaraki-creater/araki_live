@@ -21,7 +21,7 @@
             <a href="/posts/{{ $post->id }}/edit">編集する</a>
         </div>
         <span>
-            <img src="{{asset('img/nicebutton.png')}}" width="30px">
+            <img src="{{ asset('img/heart_blur.png') }}" width="30px" alt="ハートマーク">
              
             <!-- もし$likeがあれば＝ユーザーが「いいね」をしていたら -->
             @if($like)

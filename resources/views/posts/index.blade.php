@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<x-app-layout>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -7,24 +7,36 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <h1>ライブ情報一覧</h1>
+        <div class="text-4xl">ライブ情報一覧</div>
         <div class='posts'>
             @foreach ($posts as $post)
-                <div class='post'>
-                    <h2 class='title'>
+                <div class='mx-4 ml-2'>
+                    <h2 class='mt-6'>
                         <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                     </h2>
+                    <div>グループ名：{{ $post->name }}</div>
+                    @if(!$post->isPast())
+                    <div class="text-red-600">予定前</div>
+                    @else
+                    <div class="text-green-500">予定終了</div>
+                    @endif
                     <p class='body'>{{ $post->body }}</p>
+                    <div>
+                        <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                    </div>
+                    @if(auth()->id() == $post->user_id)
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="button" onclick="deletePost({{ $post->id }})">削除する</button>
                     </form>
+                    @endif
                     <div class='comments'>
+                        <div class="text-2xl">コメント一覧</div>
                         @foreach ($post->comments as $comment)
                             <div class='comment'>
                                 <h3 class='title'>
-                                    <a href="/comments/{{ $comment->id }}">{{ $comment->title }}</a>
+                                    <div>{{ $comment->title }}</div>
                                 </h3>
                                 <p class='body'>{{ $comment->body }}</p>
                             </div>
@@ -49,3 +61,4 @@
         </script>
     </body>
 </html>
+</x-app-layout>

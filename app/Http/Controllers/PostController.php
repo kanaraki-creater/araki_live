@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Like;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -28,7 +29,9 @@ class PostController extends Controller
     
     public function store(Post $post, PostRequest $request)
     {
+        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
         $input = $request['post'];
+        $input += ['image_url' => $image_url];
         $input += ['user_id' => Auth::id()];
         $post->fill($input)->save();
         

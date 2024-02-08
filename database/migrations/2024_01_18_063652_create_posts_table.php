@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title', 50);
+            $table->string('name', 50);
             $table->string('body', 200);
+            $table->string('image_url'); 
+            $table->date('date');
             $table->timestamps();
             $table->softDeletes();
         });

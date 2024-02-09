@@ -59,8 +59,6 @@
             @endif
         </span>
         <div class="comment">
-            <h3>コメントタイトル</h3>
-            <p>コメント本文</p>
             <div "comment_post">
                 <p>コメントする</p>
                 <form action="/comments/{{ $post->id }}" method="POST">
@@ -90,7 +88,7 @@
             <form action="/comments/{{ $comment->id }}?postId={{ $post->id }}" id="form_{{ $post->id }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button  onclick="deleteComment({{ $comment->id }})">削除する</button> 
+                <button　type="button"  onclick="deleteComment({{ $comment->id }})">削除する</button> 
             </form>
             @endif
             @endforeach

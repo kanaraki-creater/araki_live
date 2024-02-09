@@ -23,6 +23,7 @@
                 <p class="body_error">{{ $errors->first('post.body') }}</p>
             </div>
             <div class="image">
+                <h2>メンバーの写真など</h2>
                 <input type="file" name="image">
             </div>
             <div class="date">

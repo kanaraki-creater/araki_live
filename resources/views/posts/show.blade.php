@@ -1,40 +1,25 @@
-<x-app-layout>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ライブ情報 | ライブマップ</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    </head>
-    <body>
-        <h1 class="title">
+<x-app-layout class="">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ライブ情報 | ライブマップ</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    
+    <div class="w-2/3 m-auto">
+        <h1 class="title text-4xl place-content-center">
             {{ $post->title }}
         </h1>
         <div>グループ名：{{ $post->name }}</div>
         @if(!$post->isPast())
-        <p>予定前</p>
+        <p class="text-red-600">予定前</p>
         @else
-        <p>予定終了</p>
+        <p class="text-green-500">予定終了</p>
         @endif
-        <div class="content">
-            <div class="content__post">
-                <h3>詳細</h3>
-                <p>{{ $post->body }}</p>    
-            </div>
         <div>
             <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
         </div>
-        </div>
-        @if(auth()->id() == $post->user_id)
-        <div class="edit">
-            <a href="/posts/{{ $post->id }}/edit">編集する</a>
-        </div>
-        @endif
         <span>
-            
-             
             <!-- もし$likeがあれば＝ユーザーが「いいね」をしていたら -->
             @if($like)
             <!-- 「いいね」取消用ボタンを表示 -->
@@ -58,6 +43,18 @@
             	</a>
             @endif
         </span>
+        <div class="content">
+            <div class="content__post">
+                <h3>詳細</h3>
+                <p>{{ $post->body }}</p>    
+            </div>
+        </div>
+        @if(auth()->id() == $post->user_id)
+        <div class="edit">
+            <a href="/posts/{{ $post->id }}/edit">編集する</a>
+        </div>
+        @endif
+
         <div class="comment">
             <div "comment_post">
                 <p>コメントする</p>
@@ -73,7 +70,7 @@
                         <textarea name="comment[body]" placeholder="歌もダンスも上手で感動しました。">{{ old('comment.body') }}</textarea>
                         <p class="body_error">{{ $errors->first('comment.body') }}</p>
                     </div>
-                    <input type="submit" value="投稿する"/>
+                    <input type="submit" value="コメントを投稿する"/>
                 </form>
             </div>
         </div>
@@ -105,6 +102,5 @@
         <div class="footer">
             <a href="/">戻る</a>
         </div>
-    </body>
-</html>
+        </div>
 </x-app-layout>

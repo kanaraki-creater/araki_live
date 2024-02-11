@@ -1,11 +1,8 @@
 <x-app-layout>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>ライブを投稿する | ライブマップ</title>
-    </head>
-    <body>
-        <h1>ライブマップ</h1>
+    <meta charset="utf-8">
+    <title>ライブを投稿する | ライブマップ</title>
+    
+    <div class="w-2/3 m-auto">
         <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="title">
@@ -35,6 +32,5 @@
         <div class="footer">
             <a href="/">戻る</a>
         </div>
-    </body>
-</html>
+    </div>
 </x-app-layout>
